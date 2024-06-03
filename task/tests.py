@@ -1,4 +1,5 @@
 from django.test import TestCase
+# 0536236296 : Delight Momo account
 
 from .models import Task, Project
 
@@ -6,7 +7,7 @@ from .models import Task, Project
 
 
 class TaskModelTest(TestCase):
-    def test_tast_model_exists(self):
+    def test_task_model_exists(self):
         task = Task.objects.count()
 
         self.assertEqual(task, 0)
@@ -16,6 +17,13 @@ class TaskModelTest(TestCase):
         task = Task.objects.create(title="Give the book to ben")
     
         self.assertEqual(str(task), task.title)
+
+    
+    def test_get_home_page(self):
+        response = self.client.get("/", {"title" : "I dont know what i am doing "})
+        self.assertTrue(response.status_code == 200)
+
+
 
 
 
